@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tipoArray">
+        <item>@string/credito</item>
+        <item>@string/debito</item>
+    </array>
+    <array name="detalheArray">
+        <item>@string/alimentacao</item>
+        <item>@string/transporte</item>
+        <item>@string/saude</item>
+        <item>@string/moradia</item>
+    </array>
+</resources>

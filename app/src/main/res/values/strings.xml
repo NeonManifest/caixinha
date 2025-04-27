@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Caixinha</string>
+    <string name="tipo">Tipo</string>
+    <string name="detalhe">Detalhe</string>
+    <string name="valor">Valor</string>
+    <string name="data">Data</string>
+    <string name="lançar">Lançar</string>
+    <string name="ver">Ver Lançamentos</string>
+    <string name="saldo">Saldo</string>
+    <string name="credito">Credito</string>
+    <string name="debito">Debito</string>
+    <string name="alimentacao">Alimentação</string>
+    <string name="transporte">Transporte</string>
+    <string name="saude">Saúde</string>
+    <string name="moradia">Moradia</string>
+    <string name="valor_hint">Digite o valor</string>
+    <string name="data_hint">Selecione a data</string>
+</resources>

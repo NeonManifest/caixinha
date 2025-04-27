@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Caixinha</string>
+    <string name="tipo">Type</string>
+    <string name="detalhe">Details</string>
+    <string name="valor">Value</string>
+    <string name="data">Date</string>
+    <string name="lançar">Register</string>
+    <string name="ver">View Registry</string>
+    <string name="saldo">Balance</string>
+    <string name="credito">Credit</string>
+    <string name="debito">Debit</string>
+    <string name="alimentacao">Food</string>
+    <string name="transporte">Transportation</string>
+    <string name="saude">Health</string>
+    <string name="moradia">Housing</string>
+    <string name="valor_hint">Enter value</string>
+    <string name="data_hint">Enter date</string>
+</resources>
