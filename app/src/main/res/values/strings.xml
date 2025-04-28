@@ -15,4 +15,6 @@
     <string name="moradia">Moradia</string>
     <string name="valor_hint">Digite o valor</string>
     <string name="data_hint">Selecione a data</string>
+    <string name="salario">Salário</string>
+    <string name="extras">Extras</string>
 </resources>

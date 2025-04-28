@@ -16,4 +16,6 @@
     <string name="moradia">Housing</string>
     <string name="valor_hint">Enter value</string>
     <string name="data_hint">Enter date</string>
+    <string name="salario">Salary</string>
+    <string name="extras">Extras</string>
 </resources>

@@ -4,7 +4,11 @@
         <item>@string/credito</item>
         <item>@string/debito</item>
     </array>
-    <array name="detalheArray">
+    <array name="detalheArrayCredito">
+        <item>@string/salario</item>
+        <item>@string/extras</item>
+    </array>
+    <array name="detalheArrayDebito">
         <item>@string/alimentacao</item>
         <item>@string/transporte</item>
         <item>@string/saude</item>

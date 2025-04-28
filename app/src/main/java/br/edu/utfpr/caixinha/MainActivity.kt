@@ -1,5 +1,7 @@
 package br.edu.utfpr.caixinha
 
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonVer: Button
     private lateinit var buttonSaldo: Button
 
+    private lateinit var banco: SQLiteDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         buttonVer = findViewById(R.id.button2)
         buttonSaldo = findViewById(R.id.button3)
 
+        banco = this.openOrCreateDatabase("banco", Context.MODE_PRIVATE, null)
+        banco.execSQL("CREATE TABLE IF NOT EXISTS registros (_id INTEGER PRIMARY KEY AUTOINCREMENT, tipo VARCHAR(1) NOT NULL, detalhe VARCHAR(20) NOT NULL, valor DECIMAL NOT NULL, data TEXT NOT NULL)")
+
         ArrayAdapter.createFromResource(
             this,
             R.array.tipoArray,
@@ -47,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         ArrayAdapter.createFromResource(
             this,
-            R.array.detalheArray,
+            R.array.detalheArrayCredito,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -70,5 +77,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleLancarClick() {
         //Ao lançar, o registro deve ser armazenado em um banco de dados SQLite.
+        val tipo = spinnerTipo.selectedItem.toString()
+        val detalhe = spinnerDetalhe.selectedItem.toString()
+        val valor = editTextValue.text.toString().toDouble()
+        val data = editTextDate.text.toString()
+        val sql = "INSERT INTO registros (tipo, detalhe, valor, data) VALUES (?, ?, ?, ?)"
+        val stmt = banco.compileStatement(sql)
+        stmt.bindString(1, tipo)
+        stmt.bindString(2, detalhe)
+        stmt.bindDouble(3, valor)
+        stmt.bindString(4, data)
+        stmt.execute()
     }
+
 }
