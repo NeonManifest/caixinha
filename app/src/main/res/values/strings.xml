@@ -7,8 +7,8 @@
     <string name="lançar">Lançar</string>
     <string name="ver">Ver Lançamentos</string>
     <string name="saldo">Saldo</string>
-    <string name="credito">Credito</string>
-    <string name="debito">Debito</string>
+    <string name="credito">Crédito</string>
+    <string name="debito">Débito</string>
     <string name="alimentacao">Alimentação</string>
     <string name="transporte">Transporte</string>
     <string name="saude">Saúde</string>

@@ -1,10 +1,12 @@
 package br.edu.utfpr.caixinha
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         buttonSaldo = findViewById(R.id.button3)
 
         banco = this.openOrCreateDatabase("banco", Context.MODE_PRIVATE, null)
-        banco.execSQL("CREATE TABLE IF NOT EXISTS registros (_id INTEGER PRIMARY KEY AUTOINCREMENT, tipo VARCHAR(1) NOT NULL, detalhe VARCHAR(20) NOT NULL, valor DECIMAL NOT NULL, data TEXT NOT NULL)")
+        banco.execSQL("CREATE TABLE IF NOT EXISTS registros (_id INTEGER PRIMARY KEY AUTOINCREMENT, tipo TEXT NOT NULL, detalhe TEXT NOT NULL, valor DECIMAL NOT NULL, data TEXT NOT NULL)")
 
         ArrayAdapter.createFromResource(
             this,
@@ -122,7 +124,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleSaldoClick() {
-        TODO("Not yet implemented")
+        //Fazer a diferença entre os créditos e débitos
+        var creditos = 0.0
+        var debitos = 0.0
+        val cursor = banco.rawQuery("SELECT SUM(valor) FROM registros WHERE tipo='${getString(R.string.credito)}'", null)
+        if (cursor.moveToFirst()) {
+            creditos = cursor.getDouble(0)
+        }
+        cursor.close()
+        val cursor2 = banco.rawQuery("SELECT SUM(valor) FROM registros WHERE tipo='${getString(R.string.debito)}'", null)
+        if (cursor2.moveToFirst()) {
+            debitos = cursor2.getDouble(0)
+        }
+        cursor2.close()
+        val saldo = creditos - debitos
+        //Formatar o resultado para exibir o sinal correto
+        val saldoString = if (saldo >= 0) "+R$ %.2f".format(saldo) else "-R$ %.2f".format(-saldo)
+        //Renderizar um dialogo com o saldo
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.saldo)
+        builder.setMessage(saldoString)
+        builder.setPositiveButton(android.R.string.ok) { dialog, _ -> dialog.dismiss() }
+        builder.show()
     }
 
     private fun handleVerClick() {
@@ -136,18 +159,24 @@ class MainActivity : AppCompatActivity() {
             val detalhe = spinnerDetalhe.selectedItem.toString()
             val valor = editTextValue.text.toString().toDouble()
             val data = editTextDate.text.toString()
-            val sql = "INSERT INTO registros (tipo, detalhe, valor, data) VALUES (?, ?, ?, ?)"
-            val stmt = banco.compileStatement(sql)
-            stmt.bindString(1, tipo)
-            stmt.bindString(2, detalhe)
-            stmt.bindDouble(3, valor)
-            stmt.bindString(4, data)
-            stmt.execute()
-            Snackbar.make(
-                findViewById(android.R.id.content),
-                R.string.ok_message,
-                Snackbar.LENGTH_SHORT
-            ).show()
+            banco.beginTransaction()
+            try {
+                val sql = "INSERT INTO registros (tipo, detalhe, valor, data) VALUES (?, ?, ?, ?)"
+                val stmt = banco.compileStatement(sql)
+                stmt.bindString(1, tipo)
+                stmt.bindString(2, detalhe)
+                stmt.bindDouble(3, valor)
+                stmt.bindString(4, data)
+                stmt.executeInsert()
+                banco.setTransactionSuccessful()
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    R.string.ok_message,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } finally {
+                banco.endTransaction()
+            }
         } catch (e: Exception) {
             Snackbar.make(
                 findViewById(android.R.id.content),
