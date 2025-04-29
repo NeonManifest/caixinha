@@ -8,7 +8,6 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- First Row: Type -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -27,7 +26,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Second Row: Detail -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -47,7 +45,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
-    <!-- Third Row: Value (converted to Currency EditText) -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -70,7 +67,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
-    <!-- Fourth Row: Date (converted to Date EditText) -->
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -86,12 +82,13 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:hint="dd/MM/yyyy"
-        android:inputType="date"
-        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextValue" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextValue"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:inputType="none"
+        tools:ignore="Autofill,TextFields" />
 
     <!-- Buttons Row -->
     <Button

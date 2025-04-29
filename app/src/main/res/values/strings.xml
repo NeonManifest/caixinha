@@ -17,4 +17,6 @@
     <string name="data_hint">Selecione a data</string>
     <string name="salario">Salário</string>
     <string name="extras">Extras</string>
+    <string name="error_message">Erro a inserir registro</string>
+    <string name="ok_message">Registro inserido com sucesso</string>
 </resources>
