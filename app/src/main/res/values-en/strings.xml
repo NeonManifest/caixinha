@@ -19,5 +19,5 @@
     <string name="salario">Salary</string>
     <string name="extras">Extras</string>
     <string name="error_message">Error inserting register</string>
-    <string name="ok_message">Registered successfully.</string>
+    <string name="ok_message">Registered successfully</string>
 </resources>

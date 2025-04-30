@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
@@ -149,7 +150,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleVerClick() {
-        TODO("Not yet implemented")
+        //Abrir a tela de ver lançamentos
+        val intent = Intent(this, VerActivity::class.java)
+        startActivity(intent)
     }
 
     private fun handleLancarClick() {
