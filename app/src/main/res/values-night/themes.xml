@@ -1,7 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Caixinha" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/light_green_300</item>
+        <item name="colorPrimaryContainer">@color/light_green_800</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimaryContainer">@color/light_green_100</item>
+        <item name="colorSurface">@color/gray_900</item>
+        <item name="colorSurfaceVariant">@color/light_green_900</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorTertiary">@color/light_green_A400</item>
     </style>
 </resources>
